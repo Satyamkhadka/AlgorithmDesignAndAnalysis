@@ -1,17 +1,18 @@
 # we will create and use a binary tree.
 
-class BinaryNode:
-    def __init__(self,data=None, left=None, right=None, edge=None):
-        self.data=data
-        self.left=left
-        self.right=right
-        self.edge=edge
-        
-        def is_leaf():
-            return left is None and right is None
-
-class BinaryTree:
-    def __init__(self,root=None):
-        self.root=root
-
-        
+class Node:
+    def __init__(self):
+        self.n = 0
+        self.key = [0] * MAX_KEYS
+        self.child = [None] * MAX_CHILDREN
+        self.leaf = True
+ 
+def BtreeSearch(x, k):
+    i = 0
+    while i < x.n and k >= x.key[i]:
+        i += 1
+    if i < x.n and k == x.key[i]:
+        return x
+    if x.leaf:
+        return None
+    return BtreeSearch(x.child[i], k)
